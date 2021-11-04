@@ -1,7 +1,11 @@
 import { createStore } from 'vuex'
+import axios from 'axios'
+
 
 export default createStore({
   state: {
+    
+    batata: 'hahahaha',
     originalsList: [], 
   },
   mutations: {
@@ -11,11 +15,8 @@ export default createStore({
   },
   actions: {
     async getNetflixOriginals(context){
-      // fethapi
-      const listSeries = await fetch(`https://api.themoviedb.org/3/discover/tv?with_network=213&api_key=0dcd77a3c294fd26314b175bffee7449`)
-            .then(response => response.json())
-            .then(data => console.log(data))
-      context.commit('GET_NETFLIX_ORIGINALS', listSeries)
+      let { data } = await axios.get(`https://api.themoviedb.org/3/discover/tv?with_network=213&api_key=${process.env.VUE_APP_API_KEY}`)
+      context.commit('GET_NETFLIX_ORIGINALS', data.results)
     },
   },
   modules: {

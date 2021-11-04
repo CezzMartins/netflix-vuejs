@@ -2,32 +2,35 @@
   <div class="home">
     <h1>Hello amigos</h1>
     <button @click="getData">teste api</button>
-    <p>
-      {{ data }}
-    </p>
+    <div  v-for="item in originalsList" :key="item.id">
+      <h1>{{ item.name }}</h1>
+    </div>
+    <!-- {{ originalsList }} -->
   </div>
 </template>
 
 <script>
-// import {  mapState } from 'vuex'
+import {  mapState,  } from 'vuex'
 
 
 export default {
   name: 'Home',
+  data(){
+    return{
+    }
+  },
   components: {
     
   },
   methods: {
-    
-    getData(){
-      this.$store.dispatch('getNetflixOriginals')
-      
-    }
   },
+  mounted(){
+    this.$store.dispatch('getNetflixOriginals')
+  },
+  
   computed: {
-    data(){
-      return this.$store.state.originalList
-    }
+    ...mapState(['batata', 'originalsList']),
+    
     
   }
 }
