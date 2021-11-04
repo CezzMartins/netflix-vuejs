@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <h1>Hello amigos</h1>
-    <button @click="getData">teste api</button>
-    <div  v-for="item in originalsList" :key="item.id">
+    <ShowCase/>
+    
+    <!-- <div  v-for="item in originalsList" :key="item.id">
       <h1>{{ item.name }}</h1>
-    </div>
+    </div> -->
     <!-- {{ originalsList }} -->
   </div>
 </template>
 
 <script>
 import {  mapState,  } from 'vuex'
-
+import ShowCase from '@/components/ShowCase'
 
 export default {
   name: 'Home',
@@ -20,18 +20,17 @@ export default {
     }
   },
   components: {
-    
+    ShowCase
   },
   methods: {
   },
   mounted(){
-    this.$store.dispatch('getNetflixOriginals')
+    // this.$store.dispatch('getNetflixOriginals')
   },
   
   computed: {
     ...mapState(['batata', 'originalsList']),
-    
-    
+
   }
 }
 </script>
