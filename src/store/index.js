@@ -4,9 +4,9 @@ import axios from 'axios'
 
 export default createStore({
   state: {
-    
     batata: 'hahahaha',
     originalsList: [], 
+    
     trendingList:[],
     topRatedList: [],
     actionList: [],
@@ -51,7 +51,7 @@ export default createStore({
       context.commit('GET_TRENDING', data.results)
     },
     async getTopRated(context){
-      let { data } = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.VUE_APP_API_KEY}`)
+      let { data } = await axios.get(`  ${process.env.VUE_APP_API_KEY}`)
       context.commit('GET_TOP_RATED', data.results)
     },
     async getActionGenre(context){
@@ -75,6 +75,13 @@ export default createStore({
       context.commit('GET_DOCUMENTARY_GENRE', data.results)
     },
   },
+  getters:{
+    featureSeries(state){
+      let choose =  Math.floor(Math.random() * state.originalsList.length);
+      return choose
+    }
+  },
   modules: {
+    
   }
 })

@@ -1,16 +1,17 @@
 <template>
   <div class="home">
     <ShowCase/>
-    
-    <div  v-for="item in topRatedList" :key="item.id">
-      <h1>{{ item.title }}</h1>
+     {{ originalsList[featureSeries]?.name }}
+    <div  v-for="item in originalsList" :key="item.id">
+      <img :src="`https://image.tmdb.org/t/p/w500/${item.poster_path}`" alt="">
     </div>
+   
     <!-- {{ originalsList }} -->
   </div>
 </template>
 
 <script>
-import {  mapState,  } from 'vuex'
+import {  mapState, mapGetters } from 'vuex'
 import ShowCase from '@/components/ShowCase'
 
 export default {
@@ -25,11 +26,12 @@ export default {
   methods: {
   },
   mounted(){
-    this.$store.dispatch('getTopRated')
+    this.$store.dispatch('getNetflixOriginals')
   },
   
   computed: {
-    ...mapState(['topRatedList']),
+    ...mapState(['originalsList']),
+    ...mapGetters(['featureSeries'])
 
   }
 }
