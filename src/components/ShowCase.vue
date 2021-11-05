@@ -64,25 +64,36 @@
     align-items: center;
 }
 button{
-    height: 2.5rem;
-    width: 6rem;  
-    outline: none;
-    border: none;
-    border-radius: 0.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    margin: 2rem 0;
+
+    height: 2.5rem;
+    width: 6rem;  
+    outline: none;
     font-weight: 700;
     font-size: 1.2rem;
+    
+    cursor: pointer;
+    margin: 2rem 0;
+    
+    border: none;
+    border-radius: 0.25rem;
+    transition: all ease 0.2s;
 }
 .showcase--play-button{
     background-color: #fff;
+    
+}
+.showcase--play-button:hover{
+    filter: brightness(0.9);
 }
 .showcase--info-button{
     background-color: rgba(0,0,0,0.3);
     width: 10rem;
-    margin-left: 1rem;
+    margin-left: 1rem;   
+}
+.showcase--info-button:hover{
+    background-color: rgba(0,0,0,0.5);
 }
 </style>
