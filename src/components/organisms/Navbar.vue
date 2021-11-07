@@ -5,7 +5,6 @@
             <MenuItems/>
             <UserOptions/>
         </nav>
-
     </header>
 </template>
 
@@ -23,10 +22,13 @@ import { UserOptions} from '@/components/molecules';
 .header{
     max-height: 70px;
     min-height: 70px;
-    /* border: 1px solid red; */
+    width: 100%;
+    border: 1px solid red;
     display: flex;
     align-items: center;
     padding: 0 30px;
+    position: fixed;
+    top: 0;
 }
 
 .navbar{
