@@ -1,10 +1,10 @@
 <template>
-  <Navbar />
+  <Navbar/>
   <router-view/>
 </template>
-<script>
-import Navbar  from '@/components/Navbar';
 
+<script>
+import { Navbar } from '@/components/organisms'
 export default{
   components:{
     Navbar

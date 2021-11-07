@@ -6,7 +6,6 @@ export default createStore({
   state: {
     batata: 'hahahaha',
     originalsList: [], 
-    
     trendingList:[],
     topRatedList: [],
     actionList: [],
@@ -14,6 +13,7 @@ export default createStore({
     romanceList: [],
     horrorList: [],
     documentaryList: [],
+
   },
   mutations: {
     GET_NETFLIX_ORIGINALS(state, payload){
@@ -77,8 +77,8 @@ export default createStore({
   },
   getters:{
     featureSeries(state){
-      let choose =  Math.floor(Math.random() * state.originalsList.length);
-      return choose
+      let choose =  Math.floor(Math.random() * state.trendingList.length);
+      return state.trendingList[choose]
     }
   },
   modules: {
