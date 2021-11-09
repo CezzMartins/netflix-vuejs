@@ -46,6 +46,7 @@ import { PlayButton, InfoButton } from '@/components/atoms';
     position: relative;
     overflow: hidden;
     margin-bottom: -100px;
+    
     /* border: 1px solid red; */
 }
 .header-hero-content{

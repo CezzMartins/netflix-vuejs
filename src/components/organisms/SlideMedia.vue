@@ -1,12 +1,12 @@
 <template>
     <section class="slide-section">
-        <div class="slide-media" ref="slide" >
-            <div class="move-arrows arrow-next" >
+        <div class="slide-media" >
+                <div class="move-arrows arrow-next" @click="scrollNext()">
                     <span class="material-icons-outlined" >
                     arrow_forward_ios
                     </span>
                 </div>
-                <div class="move-arrows arrow-back" >
+                <div class="move-arrows arrow-back" @click="scrollBack" >
                     <span class="material-icons-outlined">
                         arrow_back_ios
                     </span>
@@ -20,6 +20,7 @@
 
 <script>
     export default {
+        props:['scrollNext', 'scrollBack'],
         methods: {
            
         }
@@ -44,6 +45,7 @@
 .slide-media .slide-container-image{
     display: flex;
     overflow-x: scroll;
+    place-items: center;
     width: 100%;
 }
 .slide-media .slide-container-image::-webkit-scrollbar {

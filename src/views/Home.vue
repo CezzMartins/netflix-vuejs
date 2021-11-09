@@ -1,18 +1,13 @@
 <template>
   <div class="home">
     <HeaderHero :headerHeroData="heroData" :apiKey="apiKey"/>
-    <SlideMedia>
+    <SlideMedia :scrollNext="scrollNext" :scrollBack="scrollBack">
       <h2>Originais</h2>
-      <div class="slide-container-image">
+      <div class="slide-container-image" ref="slide" >
         <img v-for="originals in originalsList" :key="originals.Id" :src="`https://image.tmdb.org/t/p/w300/${originals.backdrop_path}?api_key=${apiKey}`" alt="">
       </div>
     </SlideMedia>
-    <SlideMedia>
-      <h2>Comedy</h2>
-      <div class="slide-container-image">
-        <img v-for="comedy in comedyList" :key="comedy.Id" :src="`https://image.tmdb.org/t/p/w300/${comedy.backdrop_path}?api_key=${apiKey}`" alt="">
-      </div>
-    </SlideMedia>
+    
   </div>
 </template>
 
@@ -26,8 +21,23 @@ export default {
   data(){
     return{
       heroData: [],
-      apiKey: process.env.VUE_APP_API_KEY
+      apiKey: process.env.VUE_APP_API_KEY,
+      slideNext: false
     }
+  },
+  methods: {
+    scrollNext(){
+          let slideAmountLeft = window.innerWidth;
+          let el =  this.$refs.slide
+          el.scrollBy({left: slideAmountLeft, behavior: 'smooth'});
+          
+    },
+    scrollBack(){
+          let slideAmountRight = window.innerWidth;
+          let el =  this.$refs.slide
+          el.scrollBy({left: -slideAmountRight, behavior: 'smooth'});
+    }
+
   },
   components: {
     HeaderHero,
