@@ -1,17 +1,17 @@
 <template>
     <div class="header-hero">
         <div class="header-hero-content">
-            <h1 v-if="topHeroData.original_title">{{ topHeroData.original_title }}   </h1>
-            <h1 v-else>{{ topHeroData.name }}   </h1>
+            <h1 v-if="headerHeroData.original_title">{{ headerHeroData.original_title }}   </h1>
+            <h1 v-else>{{ headerHeroData.name }}   </h1>
             <p>
-                {{ topHeroData.overview }}
+                {{ headerHeroData.overview }}
             </p>
             <div class="hero-buttons">
                 <PlayButton/>
                 <InfoButton/>
             </div>
         </div>
-        <img :src="`https://image.tmdb.org/t/p/original/${topHeroData.backdrop_path}?api_key=${apiKey}`" alt="">
+        <img :src="`https://image.tmdb.org/t/p/original/${headerHeroData.backdrop_path}?api_key=${apiKey}`" alt="">
         <div class="fade-rigth"></div>
         <div class="fade-bottom"></div>
     </div>
@@ -22,10 +22,10 @@ import { PlayButton, InfoButton } from '@/components/atoms';
 // import {  mapGetters } from 'vuex';
 
     export default {
-        props: ['topHeroData'],
+        props: ['headerHeroData','apiKey'],
         data(){
             return{
-                apiKey: process.env.VUE_APP_API_KEY
+                
             }
         },
         components: {
@@ -45,6 +45,7 @@ import { PlayButton, InfoButton } from '@/components/atoms';
     display: flex;  
     position: relative;
     overflow: hidden;
+    border: 1px solid red;
 }
 .header-hero-content{
     max-width: 50%;
@@ -70,11 +71,9 @@ img{
     top: 0;
     right: 0;
     left: 0;
-    object-fit: contain;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    object-fit: cover;
     width:100%;
+    height: 100%;
 }
 .fade-rigth, .fade-bottom{
     min-height: 100%;

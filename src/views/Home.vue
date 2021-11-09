@@ -1,30 +1,55 @@
 <template>
   <div class="home">
-    <HeaderHero :topHeroData="heroData"/>
-    
+    <HeaderHero :headerHeroData="heroData" :apiKey="apiKey"/>
+    <SlideMedia>
+      <h2>Originais</h2>
+      <div class="slide-container-image">
+        <img v-for="originals in originalsList" :key="originals.Id" :src="`https://image.tmdb.org/t/p/w300/${originals.backdrop_path}?api_key=${apiKey}`" alt="">
+      </div>
+    </SlideMedia>
+    <SlideMedia>
+      <h2>Originais</h2>
+      <div class="slide-container-image">
+        <img v-for="originals in originalsList" :key="originals.Id" :src="`https://image.tmdb.org/t/p/w300/${originals.backdrop_path}?api_key=${apiKey}`" alt="">
+      </div>
+    </SlideMedia>
   </div>
 </template>
 
 <script>
-import { HeaderHero } from '@/components/organisms';
+import { HeaderHero ,SlideMedia } from '@/components/organisms';
+import { mapActions, mapState } from 'vuex'
 import axios from 'axios'
 
 export default {
   name: 'Home',
   data(){
     return{
-      heroData: []
+      heroData: [],
+      apiKey: process.env.VUE_APP_API_KEY
     }
   },
   components: {
-    HeaderHero
+    HeaderHero,
+    SlideMedia
+  },
+  computed:{
+    ...mapState(['originalsList']),
+    ...mapActions(['getNetflixOriginals'])
   },
   async created(){
-      let { data } = await axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.VUE_APP_API_KEY}`)
+      // Fetch Originals Series
+       this.getNetflixOriginals
+       this.slideOriginal = this.originalsList
+
+
+      //get data for feature of the day
+      
+      let { data } = await axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${this.apiKey}`)
       let results = await data.results
       let choose = await Math.floor(Math.random() * data.results.length);
       this.heroData = await results[choose]
-      console.log(results)
+      
   }
 
 }
