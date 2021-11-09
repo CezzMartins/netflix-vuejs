@@ -23,12 +23,14 @@ import { UserOptions} from '@/components/molecules';
     max-height: 70px;
     min-height: 70px;
     width: 100%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     align-items: center;
     padding: 0 30px;
     position: fixed;
     top: 0;
+    z-index: 9;
+    background: rgba(0, 0, 0, 0.315);
 }
 
 .navbar{
