@@ -8,9 +8,9 @@
       </div>
     </SlideMedia>
     <SlideMedia>
-      <h2>Originais</h2>
+      <h2>Comedy</h2>
       <div class="slide-container-image">
-        <img v-for="originals in originalsList" :key="originals.Id" :src="`https://image.tmdb.org/t/p/w300/${originals.backdrop_path}?api_key=${apiKey}`" alt="">
+        <img v-for="comedy in comedyList" :key="comedy.Id" :src="`https://image.tmdb.org/t/p/w300/${comedy.backdrop_path}?api_key=${apiKey}`" alt="">
       </div>
     </SlideMedia>
   </div>
@@ -34,12 +34,13 @@ export default {
     SlideMedia
   },
   computed:{
-    ...mapState(['originalsList']),
-    ...mapActions(['getNetflixOriginals'])
+    ...mapState(['originalsList', 'comedyList']),
+    ...mapActions(['getNetflixOriginals', 'getComedyGenre'])
   },
   async created(){
       // Fetch Originals Series
        this.getNetflixOriginals
+       this.getComedyGenre
        this.slideOriginal = this.originalsList
 
 

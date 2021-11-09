@@ -16,6 +16,11 @@
     
  
 }
+.slide-media h2{
+    color: #fff;
+    font-size: 2rem;
+    padding: 0 30px;
+}
 .slide-media .slide-container-image{
     display: flex;
     overflow: scroll;
