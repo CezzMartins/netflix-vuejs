@@ -46,7 +46,7 @@ export default {
 
       //get data for feature of the day
       
-      let { data } = await axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${this.apiKey}`)
+      let { data } = await axios.get(`https://api.themoviedb.org/3/discover/tv?with_network=213&api_key=${process.env.VUE_APP_API_KEY}`)
       let results = await data.results
       let choose = await Math.floor(Math.random() * data.results.length);
       this.heroData = await results[choose]
