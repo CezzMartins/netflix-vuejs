@@ -2,12 +2,12 @@
   <div class="home">
     <HeaderHero :headerHeroData="heroData" :apiKey="apiKey"/>
     <SlideMedia/>
-  
+    <Footer/>
   </div>
 </template>
 
 <script>
-import { HeaderHero ,SlideMedia } from '@/components/organisms';
+import { HeaderHero ,SlideMedia, Footer } from '@/components/organisms';
 import { mapActions, mapState } from 'vuex'
 import axios from 'axios'
 
@@ -26,7 +26,8 @@ export default {
   },
   components: {
     HeaderHero,
-    SlideMedia
+    SlideMedia,
+    Footer
   },
   computed:{
     
