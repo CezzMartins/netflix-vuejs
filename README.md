@@ -1,6 +1,5 @@
 # VUEFLIX
-the Project is ONLINE ON [VUEFLIX - PROJECT](https://vigorous-kalam-72e45f.netlify.app/)
-<br><br>
+
 ```
 Projeto de estudo
 ```
