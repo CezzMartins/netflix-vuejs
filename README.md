@@ -1,4 +1,26 @@
-# basic
+# VUEFLIX
+```
+Projeto de estudo
+```
+✔️ Vue 3 <br>
+✔️ Vue Routes <br>
+✔️ Vuex <br>
+✔️ Axios <br>
+✔️ MoveDB API <br>
+<br><br>
+
+
+For Work in Your machine You have to get Your own ApiKey on [The Movie Db](https://developers.themoviedb.org/)
+
+
+![image info](./img/netflix01.gif)
+
+![image info](./img/netflix02.gif)
+
+
+
+
+
 
 ## Project setup
 ```
