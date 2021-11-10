@@ -1,13 +1,8 @@
 <template>
   <div class="home">
     <HeaderHero :headerHeroData="heroData" :apiKey="apiKey"/>
-    <SlideMedia :scrollNext="scrollNext" :scrollBack="scrollBack">
-      <h2>Originais</h2>
-      <div class="slide-container-image" ref="slide" >
-        <img v-for="originals in originalsList" :key="originals.Id" :src="`https://image.tmdb.org/t/p/w300/${originals.backdrop_path}?api_key=${apiKey}`" alt="">
-      </div>
-    </SlideMedia>
-    
+    <SlideMedia/>
+  
   </div>
 </template>
 
@@ -26,18 +21,6 @@ export default {
     }
   },
   methods: {
-    scrollNext(){
-          let slideAmountLeft = window.innerWidth;
-          let el =  this.$refs.slide
-          el.scrollBy({left: slideAmountLeft, behavior: 'smooth'});
-          
-    },
-    scrollBack(){
-          let slideAmountRight = window.innerWidth;
-          let el =  this.$refs.slide
-          el.scrollBy({left: -slideAmountRight, behavior: 'smooth'});
-    }
-
   },
   components: {
     HeaderHero,
@@ -59,6 +42,7 @@ export default {
       let { data } = await axios.get(`https://api.themoviedb.org/3/discover/tv?with_network=213&api_key=${process.env.VUE_APP_API_KEY}`)
       let results = await data.results
       let choose = await Math.floor(Math.random() * data.results.length);
+      // console.log(results)
       this.heroData = await results[choose]
       
   }

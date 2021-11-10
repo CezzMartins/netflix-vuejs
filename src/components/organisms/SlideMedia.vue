@@ -1,36 +1,89 @@
 <template>
     <section class="slide-section">
         <div class="slide-media" >
-                <div class="move-arrows arrow-next" @click="scrollNext()">
-                    <span class="material-icons-outlined" >
-                    arrow_forward_ios
-                    </span>
-                </div>
-                <div class="move-arrows arrow-back" @click="scrollBack" >
-                    <span class="material-icons-outlined">
-                        arrow_back_ios
-                    </span>
-                </div>
-            <slot>
+            
+                <section class="slide-container">
+                    <h2>Originals</h2>
+                    <div class="move-arrows arrow-next" @click="scrollNext($event)">
+                        <span class="material-icons-outlined" >
+                        arrow_forward_ios
+                        </span>
+                    </div>
+                    <div class="slide-container-image" ref="slide" >
+                        <img v-for="originals in originalsList" :key="originals.Id" :src="`https://image.tmdb.org/t/p/w300/${originals.backdrop_path}?api_key=${apiKey}`" alt="">
+                    </div>
+                    <div class="move-arrows arrow-back" @click="scrollBack($event)" >
+                        <span class="material-icons-outlined">
+                            arrow_back_ios
+                        </span>
+                    </div>
+                </section>
+                <section class="slide-container">
+                    <h2>Comedy</h2>
+                    <div class="move-arrows arrow-next" @click="scrollNext($event)">
+                        <span class="material-icons-outlined" >
+                        arrow_forward_ios
+                        </span>
+                    </div>
+                    <div class="slide-container-image" ref="slide" >
+                        <img v-for="comedy in comedyList" :key="comedy.Id" :src="`https://image.tmdb.org/t/p/w300/${comedy.backdrop_path}?api_key=${apiKey}`" alt="">
+                    </div>
+                    <div class="move-arrows arrow-back" @click="scrollBack($event)" >
+                        <span class="material-icons-outlined">
+                            arrow_back_ios
+                        </span>
+                    </div>
+                </section>
                 
-            </slot>
+                
+                
+                
         </div>
     </section>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
     export default {
-        props:['scrollNext', 'scrollBack'],
-        methods: {
-           
+        data(){
+            return{
+                apiKey: process.env.VUE_APP_API_KEY,
+            }
+        },
+        computed:{
+            ...mapState(['originalsList', 'comedyList']),
+            ...mapActions(['getNetflixOriginals', 'getComedyGenre'])
+        },
+        async created(){
+        // Fetch Originals Series
+        this.getNetflixOriginals
+        this.getComedyGenre
+       },
+       methods: {
+        scrollNext($event){
+            let nodeParent = $event.target.closest('div').nextSibling    
+            let slideAmountLeft = window.innerWidth;
+            nodeParent.scrollBy({left: slideAmountLeft, behavior: 'smooth'});
+            
+        },
+        scrollBack($event){
+            let nodeParent = $event.target.closest('div').previousSibling
+            let slideAmountRight = window.innerWidth
+            nodeParent.scrollBy({left: -slideAmountRight, behavior: 'smooth'});
         }
+
+  },
     }
 </script>
 
 <style lang="css" >
-
-.slide-media{
+.slide-container{
     position: relative;
+    z-index: 999;
+    
+}
+.slide-media{
+    
     transition: all ease 0.5s;
     z-index: 999;
     
