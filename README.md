@@ -1,5 +1,6 @@
 # VUEFLIX
-
+the Project is ONLINE ON [VUEFLIX - PROJECT](https://vueflixjs.netlify.app/)
+<br><br>
 ```
 Projeto de estudo
 ```
