@@ -17,16 +17,19 @@ export default {
     return{
       heroData: [],
       apiKey: process.env.VUE_APP_API_KEY,
-      slideNext: false
+      slideNext: false,
+      
     }
   },
   methods: {
+    
   },
   components: {
     HeaderHero,
     SlideMedia
   },
   computed:{
+    
     ...mapState(['originalsList', 'comedyList']),
     ...mapActions(['getNetflixOriginals', 'getComedyGenre'])
   },
@@ -35,7 +38,6 @@ export default {
        this.getNetflixOriginals
        this.getComedyGenre
        this.slideOriginal = this.originalsList
-
 
       //get data for feature of the day
       

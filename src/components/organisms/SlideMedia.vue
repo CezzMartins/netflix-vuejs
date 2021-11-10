@@ -1,7 +1,7 @@
 <template>
     <section class="slide-section">
         <div class="slide-media" >
-            
+                <!-- START ORIGINALS -->
                 <section class="slide-container">
                     <h2>Originals</h2>
                     <div class="move-arrows arrow-next" @click="scrollNext($event)">
@@ -18,6 +18,9 @@
                         </span>
                     </div>
                 </section>
+                <!-- END ORIGINALS -->
+
+                <!-- START COMEDY -->
                 <section class="slide-container">
                     <h2>Comedy</h2>
                     <div class="move-arrows arrow-next" @click="scrollNext($event)">
@@ -34,6 +37,64 @@
                         </span>
                     </div>
                 </section>
+                <!-- END COMEDY -->
+
+                <!-- START action -->
+                <section class="slide-container" >
+                    <h2>Action</h2>
+                    <div class="move-arrows arrow-next" @click="scrollNext($event)">
+                        <span class="material-icons-outlined" >
+                        arrow_forward_ios
+                        </span>
+                    </div>
+                    <div class="slide-container-image" ref="slide" >
+                        <img v-for="action in actionList" :key="action.Id" :src="`https://image.tmdb.org/t/p/w300/${action.backdrop_path}?api_key=${apiKey}`" alt="">
+                    </div>
+                    <div class="move-arrows arrow-back" @click="scrollBack($event)" >
+                        <span class="material-icons-outlined">
+                            arrow_back_ios
+                        </span>
+                    </div>
+                </section>
+                <!-- END action -->
+
+                <!-- START romance -->
+                <section class="slide-container">
+                    <h2>Romance</h2>
+                    <div class="move-arrows arrow-next" @click="scrollNext($event)">
+                        <span class="material-icons-outlined" >
+                        arrow_forward_ios
+                        </span>
+                    </div>
+                    <div class="slide-container-image" ref="slide" >
+                        <img v-for="romance in romanceList" :key="romance.Id" :src="`https://image.tmdb.org/t/p/w300/${romance.backdrop_path}?api_key=${apiKey}`" alt="">
+                    </div>
+                    <div class="move-arrows arrow-back" @click="scrollBack($event)" >
+                        <span class="material-icons-outlined">
+                            arrow_back_ios
+                        </span>
+                    </div>
+                </section>
+                <!-- END romance -->
+
+                <!-- START horror -->
+                <section class="slide-container">
+                    <h2>Horror</h2>
+                    <div class="move-arrows arrow-next" @click="scrollNext($event)">
+                        <span class="material-icons-outlined" >
+                        arrow_forward_ios
+                        </span>
+                    </div>
+                    <div class="slide-container-image" ref="slide" >
+                        <img v-for="horror in horrorList" :key="horror.Id" :src="`https://image.tmdb.org/t/p/w300/${horror.backdrop_path}?api_key=${apiKey}`" alt="">
+                    </div>
+                    <div class="move-arrows arrow-back" @click="scrollBack($event)" >
+                        <span class="material-icons-outlined">
+                            arrow_back_ios
+                        </span>
+                    </div>
+                </section>
+                <!-- END horrorList -->
                 
                 
                 
@@ -51,27 +112,28 @@ import { mapActions, mapState } from 'vuex'
             }
         },
         computed:{
-            ...mapState(['originalsList', 'comedyList']),
-            ...mapActions(['getNetflixOriginals', 'getComedyGenre'])
+            ...mapState(['originalsList', 'comedyList', 'actionList', 'romanceList', 'horrorList']),
+            ...mapActions(['getNetflixOriginals', 'getComedyGenre', 'getActionGenre', 'getRomanceGenre', 'getHorrorGenre'])
         },
         async created(){
         // Fetch Originals Series
         this.getNetflixOriginals
         this.getComedyGenre
+        this.getActionGenre
+        this.getRomanceGenre
+        this.getHorrorGenre
        },
        methods: {
         scrollNext($event){
             let nodeParent = $event.target.closest('div').nextSibling    
             let slideAmountLeft = window.innerWidth;
             nodeParent.scrollBy({left: slideAmountLeft, behavior: 'smooth'});
-            
         },
         scrollBack($event){
             let nodeParent = $event.target.closest('div').previousSibling
             let slideAmountRight = window.innerWidth
             nodeParent.scrollBy({left: -slideAmountRight, behavior: 'smooth'});
         }
-
   },
     }
 </script>
@@ -79,14 +141,11 @@ import { mapActions, mapState } from 'vuex'
 <style lang="css" >
 .slide-container{
     position: relative;
-    z-index: 999;
+    z-index: 7;
     
 }
 .slide-media{
-    
-    transition: all ease 0.5s;
-    z-index: 999;
-    
+    transition: all ease 0.5s;   
 }
 .slide-media h2{
     color: #fff;
@@ -132,7 +191,7 @@ import { mapActions, mapState } from 'vuex'
     transition: all ease 0.5s;
     
 }
-.slide-media:hover .move-arrows{
+.slide-media:hover .move-arrows {
     opacity: 0.5;
 }
 .arrow-next{

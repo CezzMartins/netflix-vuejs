@@ -66,7 +66,7 @@ export default createStore({
       let { data } = await axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=10749&api_key=${process.env.VUE_APP_API_KEY}`)
       context.commit('GET_ROMANCE_GENRE', data.results)
     },
-    async getHorroGenre(context){
+    async getHorrorGenre(context){
       let { data } = await axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=27&api_key=${process.env.VUE_APP_API_KEY}`)
       context.commit('GET_HORROR_GENRE', data.results)
     },

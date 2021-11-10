@@ -1,5 +1,5 @@
 <template>
-    <header class="header">
+    <header class="header" :class="[checkPosition ? 'header-black' : 'navbar']" >
         <nav class="navbar">
             <Logo/>
             <MenuItems/>
@@ -14,7 +14,31 @@ import { UserOptions} from '@/components/molecules';
     export default {
         components: {
             Logo, MenuItems, UserOptions
-        }
+            
+        },
+        data(){
+            return{
+                scrollPosition: window.window.scrollY,
+                checkPosition: false
+            }
+        },
+        created(){
+           // update scroll position on scroll
+            window.addEventListener('scroll', () => {
+                this.scrollPosition = window.window.scrollY
+            }) 
+       },
+        watch: {
+            scrollPosition(newScrollPosition){
+                if(newScrollPosition >= 100){
+                    this.checkPosition = true
+                }else{
+                    this.checkPosition = false
+                }
+                
+            }
+        },
+       
     }
 </script>
 
@@ -29,8 +53,12 @@ import { UserOptions} from '@/components/molecules';
     padding: 0 30px;
     position: fixed;
     top: 0;
-    z-index: 9;
-    background: rgba(0, 0, 0, 0.315);
+    z-index: 15;
+    transition: all ease 0.2s;
+    /* background: rgba(0, 0, 0, 0.315); */
+}
+.header-black{
+    background: rgba(0, 0, 0, 0.8); 
 }
 
 .navbar{
